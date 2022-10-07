@@ -32,7 +32,7 @@ class SeleniumAction:
         for argument in self.selenium_dto.arguments:
             options.add_argument(argument)
 
-        driver = uc.Chrome(options=options)
+        driver = uc.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
         for target_dto in self.target_dto_list:
 
