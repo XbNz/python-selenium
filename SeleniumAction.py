@@ -32,7 +32,7 @@ class SeleniumAction:
         for argument in self.selenium_dto.arguments:
             options.add_argument(argument)
 
-        driver = uc.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+        driver = uc.Chrome(options=options)
 
         for target_dto in self.target_dto_list:
 
@@ -42,9 +42,14 @@ class SeleniumAction:
             driver.get(target_dto.url)
 
             if target_dto.wait_for_xpath_element is not None:
-                WebDriverWait(driver, target_dto.timeout).until(
-                    EC.visibility_of_element_located((By.XPATH, target_dto.wait_for_xpath_element))
-                )
+
+                try:
+                    WebDriverWait(driver, target_dto.timeout).until(
+                        EC.visibility_of_element_located((By.XPATH, target_dto.wait_for_xpath_element))
+                    )
+                except:
+                    driver.save_screenshot(target_dto.screenshot_filename)
+                    raise
 
             if self.selenium_dto.fullscreen:
                 s = lambda x: driver.execute_script('return document.body.parentNode.scroll' + x)
