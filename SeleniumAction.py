@@ -43,7 +43,7 @@ class SeleniumAction:
 
             if target_dto.wait_for_xpath_element is not None:
                 WebDriverWait(driver, target_dto.timeout).until(
-                    EC.presence_of_element_located((By.XPATH, target_dto.wait_for_xpath_element))
+                    EC.visibility_of_element_located((By.XPATH, target_dto.wait_for_xpath_element))
                 )
 
             if self.selenium_dto.fullscreen:
