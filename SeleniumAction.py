@@ -60,3 +60,5 @@ class SeleniumAction:
 
             with open(target_dto.html_output_filename, "w") as f:
                 f.write(driver.page_source)
+
+        driver.quit()
