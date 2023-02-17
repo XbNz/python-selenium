@@ -13,7 +13,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-import undetected_chromedriver.v2 as uc
+import undetected_chromedriver as uc
 
 from SeleniumDTO import SeleniumDTO
 from TargetDTO import TargetDTO
